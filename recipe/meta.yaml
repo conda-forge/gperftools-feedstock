@@ -12,20 +12,22 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
     - autoconf
     - automake
     - libtool
-    - toolchain
+    - {{ pin_compatible('libunwind', max_pin='x.x') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - {{ compiler('cxx') }}
   host:
     - libunwind
   run:
-    - {{ pin_compatible('libunwind', max_pin='x.x') }}
     - perl
 
 test:
