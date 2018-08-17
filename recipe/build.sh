@@ -7,7 +7,12 @@ if [ $(uname) == Darwin ]; then
 fi
 
 ./autogen.sh
-./configure  --prefix $PREFIX --enable-libunwind
+
+if [ $(uname) == Darwin ]; then
+  ./configure  --prefix $PREFIX
+else
+  ./configure  --prefix $PREFIX --enable-libunwind
+fi
 
 make
 make check

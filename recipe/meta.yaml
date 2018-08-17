@@ -21,19 +21,17 @@ requirements:
     - automake
     - libtool
     - {{ pin_compatible('libunwind', max_pin='x.x') }}  # [linux]
-    - libunwind  # [osx]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
     - {{ compiler('cxx') }}
-  host:
-    - libunwind
+    - libunwind  # [linux]
   run:
     - perl
 
 test:
   requires:
-    - gcc
+    - {{ compiler('c') }}
   commands:
     - pprof --help
 
