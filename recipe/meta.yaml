@@ -19,12 +19,12 @@ requirements:
   build:
     - autoconf
     - automake
+    - make
     - libtool
     - {{ pin_compatible('libunwind', max_pin='x.x') }}  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - {{ compiler('cxx') }}
     - libunwind  # [linux]
   run:
     - perl
@@ -33,14 +33,15 @@ test:
   requires:
     - {{ compiler('c') }}
   commands:
-    - pprof --help
+    - pprof --help  # [linux]
+    - test -f $PREFIX/lib/libtcmalloc_minimal.4.dylib  # [osx]
 
 about:
   home: http://github.com/gperftools/gperftools
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING
-  summary: 'The fastest malloc we’ve seen; works particularly well with threads and STL'
+  summary: 'The fastest malloc we have seen; works particularly well with threads and STL'
   description: |
     gperftools is a collection of a high-performance multi-threaded
     malloc() implementation, plus some pretty nifty performance analysis

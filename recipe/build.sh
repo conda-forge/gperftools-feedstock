@@ -1,16 +1,16 @@
 #!/bin/bash
 
 if [ $(uname) == Darwin ]; then
-  export CC=clang
-  export CXX=clang++
   export MACOSX_DEPLOYMENT_TARGET="10.9"
-fi
-
-./autogen.sh
-
-if [ $(uname) == Darwin ]; then
-  ./configure  --prefix $PREFIX
+  # ENV["SDKROOT"] = MacOS.sdk_path if MacOS.version == :sierra
+  export CFLAGS="$CFLAGS -D_XOPEN_SOURCE"
+  
+  autoreconf -fiv
+  ./configure  --prefix $PREFIX \
+    CC=clang CXX=clang++ --disable-debugalloc \
+    --disable-dependency-tracking
 else
+  ./autogen.sh
   ./configure  --prefix $PREFIX --enable-libunwind
 fi
 
