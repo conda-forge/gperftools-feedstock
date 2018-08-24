@@ -12,27 +12,26 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  skip: true  # [not linux]
+  number: 2
+  skip: true  # [win]
 
 requirements:
   build:
     - autoconf
     - automake
+    - make
     - libtool
-    - {{ pin_compatible('libunwind', max_pin='x.x') }}
+    - {{ pin_compatible('libunwind', max_pin='x.x') }}  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - {{ compiler('cxx') }}
-  host:
-    - libunwind
+    - libunwind  # [linux]
   run:
     - perl
 
 test:
   requires:
-    - gcc
+    - {{ compiler('c') }}
   commands:
     - pprof --help
 
@@ -41,7 +40,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING
-  summary: 'The fastest malloc we’ve seen; works particularly well with threads and STL'
+  summary: 'The fastest malloc we have seen; works particularly well with threads and STL'
   description: |
     gperftools is a collection of a high-performance multi-threaded
     malloc() implementation, plus some pretty nifty performance analysis
