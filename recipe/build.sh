@@ -6,8 +6,11 @@ if [ $(uname) == Darwin ]; then
   
   autoreconf -fiv
   ./configure  --prefix $PREFIX \
-    CC=clang CXX=clang++ --disable-debugalloc \
-    --disable-dependency-tracking
+    CC=clang \
+    CXX=clang++ \
+    --disable-debugalloc \
+    --disable-dependency-tracking \
+    --disable-libunwind
   make
   make install
 else
