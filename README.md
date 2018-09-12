@@ -7,7 +7,7 @@ Package license: BSD-3-Clause
 
 Feedstock license: BSD 3-Clause
 
-Summary: The fastest malloc we’ve seen; works particularly well with threads and STL
+Summary: The fastest malloc we have seen; works particularly well with threads and STL
 
 gperftools is a collection of a high-performance multi-threaded
 malloc() implementation, plus some pretty nifty performance analysis
