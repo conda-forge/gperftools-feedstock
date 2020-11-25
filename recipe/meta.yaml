@@ -10,6 +10,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/{{ name }}/{{ name }}/archive/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 0001-work-around-aligned-malloc.patch  # [linux]
 
 build:
   number: 0
@@ -51,3 +53,4 @@ about:
 extra:
   recipe-maintainers:
     - xmnlab
+    - saraedum
