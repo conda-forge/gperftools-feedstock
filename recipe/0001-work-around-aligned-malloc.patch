@@ -1,0 +1,32 @@
+From 3bc2451119d8c50a7d4aae5759de8d1d173936de Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Wed, 25 Nov 2020 13:05:15 +0100
+Subject: [PATCH] Do not redefine aligned_alloc when it is defined inline
+
+This is heavily inspired by the same issue on mimalloc: https://github.com/microsoft/mimalloc/blob/master/src/alloc-override.c#L183
+
+> on some glibc `aligned_alloc` is declared `static inline` so we cannot
+> override it (e.g. Conda). This happens when _GLIBCXX_HAVE_ALIGNED_ALLOC
+> is not defined. However, in those cases it will use `memalign`,
+> `posix_memalign`, or `_aligned_malloc` and we can avoid overriding it
+> ourselves.
+---
+ src/libc_override_gcc_and_weak.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/libc_override_gcc_and_weak.h b/src/libc_override_gcc_and_weak.h
+index bb99b69..11e37df 100644
+--- a/src/libc_override_gcc_and_weak.h
++++ b/src/libc_override_gcc_and_weak.h
+@@ -214,7 +214,7 @@ extern "C" {
+   void* calloc(size_t n, size_t size) __THROW     ALIAS(tc_calloc);
+   void cfree(void* ptr) __THROW                   ALIAS(tc_cfree);
+   void* memalign(size_t align, size_t s) __THROW  ALIAS(tc_memalign);
+-  void* aligned_alloc(size_t align, size_t s) __THROW ALIAS(tc_memalign);
++  void* _aligned_malloc(size_t alignment, size_t size) __THROW ALIAS(tc_memalign);
+   void* valloc(size_t size) __THROW               ALIAS(tc_valloc);
+   void* pvalloc(size_t size) __THROW              ALIAS(tc_pvalloc);
+   int posix_memalign(void** r, size_t a, size_t s) __THROW
+-- 
+2.29.2
+
