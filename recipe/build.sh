@@ -17,6 +17,6 @@ else
   ./autogen.sh
   ./configure  --prefix $PREFIX --enable-libunwind
   make
-  make check
+  make check || (cat test-suite.log; false)
   make install
 fi
