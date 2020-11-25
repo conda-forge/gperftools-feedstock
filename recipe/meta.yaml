@@ -23,6 +23,7 @@ requirements:
     - automake
     - make
     - libtool
+    - gawk
     - {{ pin_compatible('libunwind', max_pin='x.x') }}  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
