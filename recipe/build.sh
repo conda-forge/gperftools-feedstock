@@ -17,6 +17,8 @@ else
   ./autogen.sh
   ./configure  --prefix $PREFIX --enable-libunwind
   make
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
   make check
+fi
   make install
 fi
