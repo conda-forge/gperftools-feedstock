@@ -13,6 +13,10 @@ if [[ $(uname) == Darwin ]]; then
 else
   ./configure  --prefix $PREFIX --enable-libunwind --enable-frame-pointers
   make -j${CPU_COUNT}
-  make check
+
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+    make check
+  fi
+
   make install
 fi
