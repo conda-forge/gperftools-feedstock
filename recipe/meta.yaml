@@ -1,6 +1,6 @@
 {% set name = "gperftools" %}
-{% set version = "2.7" %}
-{% set sha256 = "3a88b4544315d550c87db5c96775496243fb91aa2cea88d2b845f65823f3d38a" %}
+{% set version = "2.9.1" %}
+{% set sha256 = "ea566e528605befb830671e359118c2da718f721c27225cbbc93858c7520fee3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,35 +8,31 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/{{name}}/{{name}}/archive/{{name}}-{{version}}.tar.gz
+  url: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ version }}/gperftools-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
   build:
-    - autoconf
-    - automake
     - make
-    - libtool
     - {{ pin_compatible('libunwind', max_pin='x.x') }}  # [linux]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - sysroot_linux-64 2.17  # [linux64]
   host:
     - libunwind  # [linux]
   run:
     - perl
 
 test:
-  requires:
-    - {{ compiler('c') }}
   commands:
     - pprof --help
 
 about:
-  home: http://github.com/gperftools/gperftools
+  home: https://github.com/gperftools/gperftools
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING
@@ -51,3 +47,4 @@ about:
 extra:
   recipe-maintainers:
     - xmnlab
+    - matthiasdiener
