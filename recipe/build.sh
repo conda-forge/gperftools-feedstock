@@ -2,6 +2,9 @@
 
 set -ex
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
+
 if [[ $(uname) == Darwin ]]; then
   export CFLAGS="$CFLAGS -D_XOPEN_SOURCE"
 
