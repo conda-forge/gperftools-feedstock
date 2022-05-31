@@ -1,6 +1,6 @@
 {% set name = "gperftools" %}
-{% set version = "2.9.1" %}
-{% set sha256 = "ea566e528605befb830671e359118c2da718f721c27225cbbc93858c7520fee3" %}
+{% set version = "2.10" %}
+{% set sha256 = "83e3bfdd28b8bcf53222c3798d4d395d52dadbbae59e8730c4a6d31a9c3732d8" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -37,7 +37,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING
-  summary: 'The fastest malloc we have seen; works particularly well with threads and STL'
+  summary: The fastest malloc we have seen; works particularly well with threads and STL
   description: |
     gperftools is a collection of a high-performance multi-threaded
     malloc() implementation, plus some pretty nifty performance analysis
