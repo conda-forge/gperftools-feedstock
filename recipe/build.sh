@@ -19,6 +19,7 @@ else
 
   if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
     make check
+    cat ./test-suite.log
   fi
 
   make install
