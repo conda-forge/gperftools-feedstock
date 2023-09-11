@@ -1,6 +1,6 @@
 {% set name = "gperftools" %}
-{% set version = "2.10" %}
-{% set sha256 = "83e3bfdd28b8bcf53222c3798d4d395d52dadbbae59e8730c4a6d31a9c3732d8" %}
+{% set version = "2.13" %}
+{% set sha256 = "4882c5ece69f8691e51ffd6486df7d79dbf43b0c909d84d3c0883e30d27323e7" %}
 
 package:
   name: {{ name|lower }}
