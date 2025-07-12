@@ -14,7 +14,10 @@ if [[ $(uname) == Darwin ]]; then
   make -j${CPU_COUNT}
   make install
 else
-  ./configure  --prefix $PREFIX --enable-libunwind --enable-frame-pointers
+  if [[ $target_platform == *aarch64 ]]; then
+    EXTRA=--disable-heap-checker
+  fi
+  ./configure  --prefix $PREFIX --enable-libunwind --enable-frame-pointers $EXTRA
   make -j${CPU_COUNT}
 
   if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then

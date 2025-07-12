@@ -1,18 +1,17 @@
 {% set name = "gperftools" %}
-{% set version = "2.10" %}
-{% set sha256 = "83e3bfdd28b8bcf53222c3798d4d395d52dadbbae59e8730c4a6d31a9c3732d8" %}
+{% set version = "2.16" %}
+{% set sha256 = "f12624af5c5987f2cc830ee534f754c3c5961eec08004c26a8b80de015cf056f" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ version }}/gperftools-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -30,7 +29,7 @@ requirements:
 
 test:
   commands:
-    - pprof --help
+    - pprof --help  # appears to be removed post-2.16
 
 about:
   home: https://github.com/gperftools/gperftools
