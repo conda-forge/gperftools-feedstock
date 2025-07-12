@@ -202,6 +202,3 @@ Feedstock Maintainers
 * [@matthiasdiener](https://github.com/matthiasdiener/)
 * [@xmnlab](https://github.com/xmnlab/)
 
-
-<!-- dummy commit to enable rerendering -->
-
