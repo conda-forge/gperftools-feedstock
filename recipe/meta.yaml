@@ -29,7 +29,7 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/lib/libtcmalloc.$SHLIB_EXT
+    - test -f $PREFIX/lib/libtcmalloc$SHLIB_EXT
 
 about:
   home: https://github.com/gperftools/gperftools
