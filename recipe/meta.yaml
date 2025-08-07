@@ -29,7 +29,7 @@ requirements:
 
 test:
   commands:
-    - pprof --help  # appears to be removed post-2.16
+    - test -f $PREFIX/lib/libtcmalloc.$SHLIB_EXT
 
 about:
   home: https://github.com/gperftools/gperftools
