@@ -1,6 +1,6 @@
 {% set name = "gperftools" %}
-{% set version = "2.16" %}
-{% set sha256 = "f12624af5c5987f2cc830ee534f754c3c5961eec08004c26a8b80de015cf056f" %}
+{% set version = "2.17" %}
+{% set sha256 = "9661218de70c933dd8b296c6fd0f7c3993baa205ac5026961c1ed31716b79ae4" %}
 
 package:
   name: {{ name|lower }}
@@ -29,7 +29,7 @@ requirements:
 
 test:
   commands:
-    - pprof --help  # appears to be removed post-2.16
+    - test -f $PREFIX/lib/libtcmalloc$SHLIB_EXT
 
 about:
   home: https://github.com/gperftools/gperftools
